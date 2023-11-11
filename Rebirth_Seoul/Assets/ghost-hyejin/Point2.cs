@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Point : MonoBehaviour
+public class Point2 : MonoBehaviour
 {
     public GameObject prefabToSpawn; // 생성할 프리팹
     public Transform spawnPoint; // 생성 위치
@@ -27,7 +27,7 @@ public class Point : MonoBehaviour
         GameObject ghostInstance = Instantiate(prefabToSpawn, spawnPoint.position, spawnPoint.rotation);
 
         // 생성된 ghost 인스턴스의 ghost 스크립트에 waypoints 설정
-        Ghost ghostScript = ghostInstance.GetComponent<Ghost>();
+        Ghost2 ghostScript = ghostInstance.GetComponent<Ghost2>();
         if (ghostScript != null)
         {
             Transform parentTransform = transform.parent;

@@ -459,7 +459,7 @@ MonoBehaviour:
   - {fileID: 3616416653835084558}
   - {fileID: 0}
   - {fileID: 0}
-  moveSpeed: 3
+  moveSpeed: 2
   maxHealth: 100
   currentHealth: 0
   currentWaypointIndex: 0

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ghost : MonoBehaviour
+public class Ghost2 : MonoBehaviour
 {
     public Transform[] waypoints; // empty 배열의 위치를 저장할 배열
     public float moveSpeed = 5f; // 이동 속도
@@ -11,16 +11,13 @@ public class ghost : MonoBehaviour
     public int currentWaypointIndex = 0;
     private ghostHealthBar healthBar;
     private Animator animator;
-    private GameManager worldGM;
-    public GameObject GM;
 
     void Start()
     {
         currentHealth = maxHealth; // 최대 체력으로 시작
         healthBar = GetComponentInChildren<ghostHealthBar>();
+
         animator = GetComponent<Animator>();
-        GM = GameObject.Find("GameManager");
-        worldGM = GM.GetComponent<GameManager>();
 
         if (healthBar != null)
         {
@@ -55,20 +52,32 @@ public class ghost : MonoBehaviour
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
 
-            
-            if(currentWaypointIndex == 0)
+
+            if (currentWaypointIndex == 0)
             {
-                animator.SetBool("Right", true);
-                animator.SetBool("Left", false);
+                animator.SetBool("Right", false);
+                animator.SetBool("Left", true);
                 animator.SetBool("Back", false);
             }
-            else if(currentWaypointIndex == 1)
+            else if (currentWaypointIndex == 1)
+            {
+                animator.SetBool("Right", false);
+                animator.SetBool("Left", false);
+                animator.SetBool("Back", true);
+            }
+            else if (currentWaypointIndex == 2)
+            {
+                animator.SetBool("Right", false);
+                animator.SetBool("Left", false);
+                animator.SetBool("Back", true);
+            }
+            else if (currentWaypointIndex == 3)
             {
                 animator.SetBool("Right", true);
-                animator.SetBool("Left", false);
+                animator.SetBool("Left", true);
                 animator.SetBool("Back", false);
             }
- 
+
         }
     }
 
@@ -80,8 +89,8 @@ public class ghost : MonoBehaviour
         }
         else if (other.CompareTag("Player"))
         {
-            worldGM.GetDamage(10);
-            Debug.Log(worldGM.PlayerHP);
+            Player_HpBar.curHp -= 10;
+            Debug.Log(Player_HpBar.curHp);
 
         }
     }
@@ -99,7 +108,7 @@ public class ghost : MonoBehaviour
 
         healthBar.Set_Health(currentHealth);
     }
-    
+
     void UpdateAnimation()
     {
         // 애니메이션을 설정하는 로직 추가
