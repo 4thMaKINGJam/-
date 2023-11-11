@@ -11,11 +11,14 @@ public class Player_HpBar : MonoBehaviour
 
     public static float curHp = 100;
     public bool HpZero { get; private set; } = false;
+    private GameManager worldGM;
+    public GameObject GM;
 
 
     void Start()
     {
-        hpbar.value = (float)curHp / (float)maxHp;
+        worldGM = GM.GetComponent<GameManager>();
+        hpbar.value = (float)worldGM.PlayerHP / (float)maxHp;
     }
 
     // Update is called once per frame
@@ -23,19 +26,19 @@ public class Player_HpBar : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            curHp -= 10;
-            HandleHp();
-
-            if(curHp <= 0)
-            {
-                HpZero = true;
-            }
+            worldGM.GetDamage(10);
         }
-        
+
+        HandleHp();
+
+        if (worldGM.PlayerHP <= 0)
+        {
+            HpZero = true;
+        }
     }
 
     private void HandleHp()
     {
-        hpbar.value = (float)curHp / (float)maxHp;
+        hpbar.value = (float)worldGM.PlayerHP / (float)maxHp;
     }
 }
