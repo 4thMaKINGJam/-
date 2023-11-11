@@ -39,6 +39,15 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 978773821
+    locked: 0
+  - name: Road
+    uniqueID: 342734565
+    locked: 0
+  - name: Obstacle
+    uniqueID: 2672825589
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
