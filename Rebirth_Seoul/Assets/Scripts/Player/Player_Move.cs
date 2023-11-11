@@ -5,22 +5,22 @@ using UnityEngine;
 
 public class Player_Move : MonoBehaviour
 {
-    public float speed; //Ä³¸¯ÅÍÀÇ ½ºÇÇµå
+    public float speed; //ìºë¦­í„°ì˜ ìŠ¤í”¼ë“œ
 
     private Vector3 vector; //x, y, z
 
-    //speed * walkCount = ÇÑ¹ø¿¡ ÀÌµ¿ÇÒ ÇÈ¼¿
+    //speed * walkCount = í•œë²ˆì— ì´ë™í•  í”½ì…€
     public int walkCount;
-    private int currentWalkCount; //1¾¿ Áõ°¡ÇÏ¿© walkCount¸¸Å­ µÇ¸é ¹İº¹¹®Å»Ãâ
+    private int currentWalkCount; //1ì”© ì¦ê°€í•˜ì—¬ walkCountë§Œí¼ ë˜ë©´ ë°˜ë³µë¬¸íƒˆì¶œ
 
     private bool canMove = true;
 
-    //¾Ö´Ï¸ŞÀÌ¼Ç
+    //ì• ë‹ˆë©”ì´ì…˜
     private Animator animator;
 
-    //º® ¸øÁö³ª°¡°Ô ÇÏ±â
+    //ë²½ ëª»ì§€ë‚˜ê°€ê²Œ í•˜ê¸°
     private BoxCollider2D boxCollider;
-    public LayerMask layerMask; //¾î¶² ·¹ÀÌ¾î¿¡ Ãæµ¹Çß´ÂÁö ÆÇ´Ü
+    public LayerMask layerMask; //ì–´ë–¤ ë ˆì´ì–´ì— ì¶©ëŒí–ˆëŠ”ì§€ íŒë‹¨
     
     private float curTime;
     public float coolTime = 0.5f;
@@ -29,16 +29,17 @@ public class Player_Move : MonoBehaviour
 
 
 
+
     // Start is called before the first frame update
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
-        // Player_HpBar Å¬·¡½ºÀÇ ÀÎ½ºÅÏ½º¸¦ ¾òÀ½
+        // Player_HpBar í´ë˜ìŠ¤ì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì–»ìŒ
         playerHpBar = FindObjectOfType<Player_HpBar>();
     }
 
-    //ÇÑ¹ø ¹æÇâÅ° ´©¸¦ ¶§¸¶´Ù ÇÑ Ä­ ¿òÁ÷ÀÌ°Ô ÇÏ±â
+    //í•œë²ˆ ë°©í–¥í‚¤ ëˆ„ë¥¼ ë•Œë§ˆë‹¤ í•œ ì¹¸ ì›€ì§ì´ê²Œ í•˜ê¸°
     IEnumerator MoveCouroutine()
     {
         while(Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0)
@@ -48,17 +49,15 @@ public class Player_Move : MonoBehaviour
             if (vector.x != 0)
                 vector.y = 0;
 
-            //¾Ö´Ï¸ŞÀÌ¼Ç º¯¼ö (Å° ÀÔ·Â°ª -1/1À» dir·Î ¹Ş±â)
+            //ì• ë‹ˆë©”ì´ì…˜ ë³€ìˆ˜ (í‚¤ ì…ë ¥ê°’ -1/1ì„ dirë¡œ ë°›ê¸°)
             animator.SetFloat("DirX", vector.x);
             animator.SetFloat("DirY", vector.y);
 
-            RaycastHit2D hit; //½ÃÀÛ ÁöÁ¡¿¡¼­ ³¡ ÁöÁ¡±îÁö ·¹ÀÌÀú Àß µµ´ŞÇÏ¸é null
-            Vector2 start = transform.position; //½ÃÀÛ ÁöÁ¡: ÇöÀçÀ§Ä¡
-            Vector2 end = start + new Vector2(vector.x * speed * walkCount, vector.y * speed * walkCount); //³¡ ÁöÁ¡: ÀÌµ¿ÇÏ°íÀÚ ÇÏ´Â °÷
+            RaycastHit2D hit; //ì‹œì‘ ì§€ì ì—ì„œ ë ì§€ì ê¹Œì§€ ë ˆì´ì € ì˜ ë„ë‹¬í•˜ë©´ null
+            Vector2 start = transform.position; //ì‹œì‘ ì§€ì : í˜„ì¬ìœ„ì¹˜
+            Vector2 end = start + new Vector2(vector.x * speed * walkCount, vector.y * speed * walkCount); //ë ì§€ì : ì´ë™í•˜ê³ ì í•˜ëŠ” ê³³
 
-            boxCollider.enabled = false;
             hit = Physics2D.Linecast(start, end, LayerMask.GetMask("NoPassing"));
-            boxCollider.enabled = true;
 
             if(hit.transform != null)
             {
@@ -67,7 +66,7 @@ public class Player_Move : MonoBehaviour
 
             animator.SetBool("Walking", true);
 
-            //°È±â
+            //ê±·ê¸°
             while (currentWalkCount < walkCount)
             {
                 if (vector.x != 0)
@@ -84,11 +83,10 @@ public class Player_Move : MonoBehaviour
             }
             currentWalkCount = 0;
 
-           
+            
         }
         animator.SetBool("Walking", false);
         canMove = true;
-
 
     }
 
@@ -97,8 +95,7 @@ public class Player_Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ÄÚ·çÆ¾ ¿ÜºÎ¿¡¼­ °ø°İ ÀÔ·ÂÀ» È®ÀÎ
-        if (curTime <= 0 && Input.GetKeyDown(KeyCode.Q))
+        if(canMove)
         {
             animator.SetBool("Walking", false);
             animator.SetTrigger("atk");
@@ -121,14 +118,15 @@ public class Player_Move : MonoBehaviour
     {
         if (canMove)
         {
-            if ((Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
+           
+            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+
             {
                 canMove = false;
                 StartCoroutine(MoveCouroutine());
             }
-
         }
-
+        
     }
 
 
