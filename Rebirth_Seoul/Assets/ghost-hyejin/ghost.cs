@@ -6,9 +6,9 @@ public class ghost : MonoBehaviour
     public Transform[] waypoints; // empty 배열의 위치를 저장할 배열
     public float moveSpeed = 5f; // 이동 속도
     public int maxHealth = 100;   // 최대 체력
-    private int currentHealth;     // 현재 체력
+    public int currentHealth;     // 현재 체력
 
-    private int currentWaypointIndex = 0;
+    public int currentWaypointIndex = 0;
     private ghostHealthBar healthBar;
     private Animator animator;
 
@@ -23,19 +23,24 @@ public class ghost : MonoBehaviour
         {
             healthBar.Set_MaxHealth(maxHealth);
         }
+        animator.SetBool("Right", true);
     }
 
     void Update()
     {
-        Move_To_Waypoint();
-        UpdateAnimation();
+        if (currentHealth > 0)
+        {
+            Move_To_Waypoint();
+        }
+        //UpdateAnimation();
+
     }
 
     void Move_To_Waypoint()
     {
-        if (waypoints.Length == 0)
+        if (waypoints.Length == 0 || currentHealth <= 0)
         {
-            Debug.LogError("웨이포인트가 설정되지 않았습니다!");
+            Debug.LogError("웨이포인트가 설정되지 않았거나 체력이 0 이하입니다!");
             return;
         }
 
@@ -46,6 +51,34 @@ public class ghost : MonoBehaviour
         if (Vector3.Distance(transform.position, waypoints[currentWaypointIndex].position) < 0.1f)
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
+
+
+            if(currentWaypointIndex == 0)
+            {
+                animator.SetBool("Right", true);
+                animator.SetBool("Left", false);
+                animator.SetBool("Back", false);
+            }
+            else if(currentWaypointIndex == 1)
+            {
+                animator.SetBool("Right", true);
+                animator.SetBool("Left", false);
+                animator.SetBool("Back", false);
+            }
+            else if (currentWaypointIndex == 2)
+            {
+                animator.SetBool("Right", false);
+                animator.SetBool("Left", true);
+                animator.SetBool("Back", false);
+            }
+            else if (currentWaypointIndex == 3)
+            {
+                animator.SetBool("Right", false);
+                animator.SetBool("Left", false);
+                animator.SetBool("Back", true);
+            }
+
+
         }
     }
 
@@ -74,13 +107,14 @@ public class ghost : MonoBehaviour
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
+
             animator.SetBool("die", true);
             //Destroy(gameObject);
         }
 
         healthBar.Set_Health(currentHealth);
     }
-
+    
     void UpdateAnimation()
     {
         // 애니메이션을 설정하는 로직 추가
@@ -91,7 +125,7 @@ public class ghost : MonoBehaviour
         }
     }
 
-    public void Destriy_Ghost()
+    public void Destroy_Ghost()
     {
         Destroy(gameObject);
     }
