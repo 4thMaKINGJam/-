@@ -8,7 +8,8 @@ public class Player_HpBar : MonoBehaviour
     [SerializeField]
     private Slider hpbar;
     private float maxHp = 100;
-    private float curHp = 100;
+    private static float curHp = 100;
+    public bool HpZero { get; private set; } = false;
 
     void Start()
     {
@@ -21,8 +22,14 @@ public class Player_HpBar : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             curHp -= 10;
+            HandleHp();
+
+            if(curHp <= 0)
+            {
+                HpZero = true;
+            }
         }
-        HandleHp();
+        
     }
 
     private void HandleHp()

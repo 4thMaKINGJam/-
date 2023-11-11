@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Player_Move : MonoBehaviour
 {
     public float speed; //캐릭터의 스피드
@@ -20,16 +21,21 @@ public class Player_Move : MonoBehaviour
     //벽 못지나가게 하기
     private BoxCollider2D boxCollider;
     public LayerMask layerMask; //어떤 레이어에 충돌했는지 판단
-
-    //
+    
     private float curTime;
     public float coolTime = 0.5f;
+
+    private Player_HpBar playerHpBar;
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
+        // Player_HpBar 클래스의 인스턴스를 얻음
+        playerHpBar = FindObjectOfType<Player_HpBar>();
     }
 
     //한번 방향키 누를 때마다 한 칸 움직이게 하기
@@ -86,6 +92,8 @@ public class Player_Move : MonoBehaviour
 
     }
 
+    
+
     // Update is called once per frame
     void Update()
     {
@@ -100,6 +108,11 @@ public class Player_Move : MonoBehaviour
         else
         {
             curTime -= Time.deltaTime;
+        }
+
+        if(playerHpBar != null && playerHpBar.HpZero)
+        {
+            animator.SetBool("HpZero", true);
         }
 
     }
@@ -117,4 +130,6 @@ public class Player_Move : MonoBehaviour
         }
 
     }
+
+
 }
