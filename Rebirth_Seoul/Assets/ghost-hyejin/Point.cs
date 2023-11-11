@@ -30,17 +30,11 @@ public class Point : MonoBehaviour
         ghost ghostScript = ghostInstance.GetComponent<ghost>();
         if (ghostScript != null)
         {
-           /* Transform waypoint0.position = transform.GetChild(0).position;
-            Transform waypoint1.position = transform.GetChild(1).position;
+            Transform parentTransform = transform.parent;
 
-
-
-
-
-            ghostScript.waypoints = new Transform[2]; // 적절한 배열 크기로 설정
-            ghostScript.waypoints[0] = transform.GetChild(0); // 예시로 첫 번째 자식 오브젝트를 할당
-            ghostScript.waypoints[1] = transform.GetChild(1); // 예시로 두 번째 자식 오브젝트를 할당
-           */
+            ghostScript.waypoints = new Transform[2];
+            ghostScript.waypoints[0] = parentTransform.GetChild(1);
+            ghostScript.waypoints[1] = parentTransform.GetChild(2);
         }
         else
         {

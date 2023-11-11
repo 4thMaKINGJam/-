@@ -52,7 +52,7 @@ public class ghost : MonoBehaviour
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
 
-            /*
+            
             if(currentWaypointIndex == 0)
             {
                 animator.SetBool("Right", true);
@@ -65,20 +65,7 @@ public class ghost : MonoBehaviour
                 animator.SetBool("Left", false);
                 animator.SetBool("Back", false);
             }
-            else if (currentWaypointIndex == 2)
-            {
-                animator.SetBool("Right", false);
-                animator.SetBool("Left", true);
-                animator.SetBool("Back", false);
-            }
-            else if (currentWaypointIndex == 3)
-            {
-                animator.SetBool("Right", false);
-                animator.SetBool("Left", false);
-                animator.SetBool("Back", true);
-            }*/
-
-
+ 
         }
     }
 
