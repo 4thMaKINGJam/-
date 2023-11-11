@@ -417,7 +417,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e85a8f1e7e154314e8430d4298551b75, type: 2}
+  - {fileID: 2100000, guid: 6fdd153d57c70c34ab58f5f57260b27f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -926,7 +926,7 @@ SpriteRenderer:
   m_SortingLayerID: 978773821
   m_SortingLayer: -3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e8bdefb62388b414facb76f3b36443ea, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a74fd252404b3884bb52591f7a511d0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
