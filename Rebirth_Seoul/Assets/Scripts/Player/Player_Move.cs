@@ -95,11 +95,12 @@ public class Player_Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canMove)
-        {
-            animator.SetBool("Walking", false);
-            animator.SetTrigger("atk");
+        
+        
 
+        if (curTime <= 0 && Input.GetKeyDown(KeyCode.Q))
+        {
+            animator.SetTrigger("atk");
             curTime = coolTime;
         }
         else
@@ -107,7 +108,7 @@ public class Player_Move : MonoBehaviour
             curTime -= Time.deltaTime;
         }
 
-        if(playerHpBar != null && playerHpBar.HpZero)
+        if (playerHpBar != null && playerHpBar.HpZero)
         {
             animator.SetBool("HpZero", true);
         }
