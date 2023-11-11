@@ -21,10 +21,6 @@ public class Player_Move : MonoBehaviour
     private BoxCollider2D boxCollider;
     public LayerMask layerMask; //어떤 레이어에 충돌했는지 판단
 
-    //
-    private float curTime;
-    public float coolTime = 0.5f;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -50,9 +46,7 @@ public class Player_Move : MonoBehaviour
             Vector2 start = transform.position; //시작 지점: 현재위치
             Vector2 end = start + new Vector2(vector.x * speed * walkCount, vector.y * speed * walkCount); //끝 지점: 이동하고자 하는 곳
 
-            boxCollider.enabled = false;
             hit = Physics2D.Linecast(start, end, LayerMask.GetMask("NoPassing"));
-            boxCollider.enabled = true;
 
             if(hit.transform != null)
             {
@@ -78,43 +72,24 @@ public class Player_Move : MonoBehaviour
             }
             currentWalkCount = 0;
 
-           
+            
         }
         animator.SetBool("Walking", false);
         canMove = true;
-
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 코루틴 외부에서 공격 입력을 확인
-        if (curTime <= 0 && Input.GetKeyDown(KeyCode.Q))
+        if(canMove)
         {
-            animator.SetBool("Walking", false);
-            animator.SetTrigger("atk");
-
-            curTime = coolTime;
-        }
-        else
-        {
-            curTime -= Time.deltaTime;
-        }
-
-    }
-
-    void FixedUpdate() 
-    {
-        if (canMove)
-        {
-            if ((Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0))
+            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
             {
                 canMove = false;
                 StartCoroutine(MoveCouroutine());
             }
-
         }
-
+        
     }
 }
