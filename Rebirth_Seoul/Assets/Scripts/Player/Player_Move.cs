@@ -5,22 +5,22 @@ using UnityEngine;
 
 public class Player_Move : MonoBehaviour
 {
-    public float speed; //캐릭터의 스피드
+    public float speed; //캐릭?�의 ?�피??
 
     private Vector3 vector; //x, y, z
 
-    //speed * walkCount = 한번에 이동할 픽셀
+    //speed * walkCount = ?�번???�동???��?
     public int walkCount;
-    private int currentWalkCount; //1씩 증가하여 walkCount만큼 되면 반복문탈출
+    private int currentWalkCount; //1??증�??�여 walkCount만큼 ?�면 반복문탈�?
 
     private bool canMove = true;
 
-    //애니메이션
+    //?�니메이??
     private Animator animator;
 
-    //벽 못지나가게 하기
+    //�?못�??��?�??�기
     private BoxCollider2D boxCollider;
-    public LayerMask layerMask; //어떤 레이어에 충돌했는지 판단
+    public LayerMask layerMask; //?�떤 ?�이?�에 충돌?�는지 ?�단
     
     private float curTime;
     public float coolTime = 0.5f;
@@ -35,11 +35,11 @@ public class Player_Move : MonoBehaviour
     {
         boxCollider = GetComponent<BoxCollider2D>();
         animator = GetComponent<Animator>();
-        // Player_HpBar 클래스의 인스턴스를 얻음
+        // Player_HpBar ?�래?�의 ?�스?�스�??�음
         playerHpBar = FindObjectOfType<Player_HpBar>();
     }
 
-    //한번 방향키 누를 때마다 한 칸 움직이게 하기
+    //?�번 방향???��? ?�마????�??�직이�??�기
     IEnumerator MoveCouroutine()
     {
         while(Input.GetAxisRaw("Vertical") != 0 || Input.GetAxisRaw("Horizontal") != 0)
@@ -49,13 +49,13 @@ public class Player_Move : MonoBehaviour
             if (vector.x != 0)
                 vector.y = 0;
 
-            //애니메이션 변수 (키 입력값 -1/1을 dir로 받기)
+            //?�니메이??변??(???�력�?-1/1??dir�?받기)
             animator.SetFloat("DirX", vector.x);
             animator.SetFloat("DirY", vector.y);
 
-            RaycastHit2D hit; //시작 지점에서 끝 지점까지 레이저 잘 도달하면 null
-            Vector2 start = transform.position; //시작 지점: 현재위치
-            Vector2 end = start + new Vector2(vector.x * speed * walkCount, vector.y * speed * walkCount); //끝 지점: 이동하고자 하는 곳
+            RaycastHit2D hit; //?�작 지?�에????지?�까지 ?�이?� ???�달?�면 null
+            Vector2 start = transform.position; //?�작 지?? ?�재?�치
+            Vector2 end = start + new Vector2(vector.x * speed * walkCount, vector.y * speed * walkCount); //??지?? ?�동?�고???�는 �?
 
             hit = Physics2D.Linecast(start, end, LayerMask.GetMask("NoPassing"));
 
@@ -94,13 +94,19 @@ public class Player_Move : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
-        
+    {      
 
         if (curTime <= 0 && Input.GetKeyDown(KeyCode.Q))
         {
             animator.SetTrigger("atk");
+            if (vector.x < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1); //�¿� ����
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1); //�������
+            }
             curTime = coolTime;
         }
         else
