@@ -11,13 +11,16 @@ public class ghost : MonoBehaviour
     public int currentWaypointIndex = 0;
     private ghostHealthBar healthBar;
     private Animator animator;
+    private GameManager worldGM;
+    public GameObject GM;
 
     void Start()
     {
         currentHealth = maxHealth; // 최대 체력으로 시작
         healthBar = GetComponentInChildren<ghostHealthBar>();
-
         animator = GetComponent<Animator>();
+        GM = GameObject.Find("GameManager");
+        worldGM = GM.GetComponent<GameManager>();
 
         if (healthBar != null)
         {
@@ -77,8 +80,8 @@ public class ghost : MonoBehaviour
         }
         else if (other.CompareTag("Player"))
         {
-            Player_HpBar.curHp -= 10;
-            Debug.Log(Player_HpBar.curHp);
+            worldGM.GetDamage(10);
+            Debug.Log(worldGM.PlayerHP);
 
         }
     }
