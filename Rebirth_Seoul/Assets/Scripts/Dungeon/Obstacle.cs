@@ -6,12 +6,14 @@ public class Obstacle : MonoBehaviour
 {
     public float spineTime; // spineTime마다 반복
     public float spineStay; //spineTime동안 유지
-    //bool isActive = false;
+    public GameObject GM;
+    private GameManager worldGM;
 
     void Start()
     {
         //초기화
         gameObject.SetActive(false);
+        worldGM = GM.GetComponent<GameManager>();
 
         //지연 시간
         InvokeRepeating("spine_active", spineTime, spineTime);
@@ -29,7 +31,6 @@ public class Obstacle : MonoBehaviour
 
     private void spine_inactive()
     {
-        //isActive = false;
         gameObject.SetActive(false);
         Debug.Log("Spine Inactivated");
     }
@@ -38,6 +39,7 @@ public class Obstacle : MonoBehaviour
     {
         if (player.tag == "Player")
         {
+            worldGM.GetDamage(20);
             Debug.Log("Spine Damage");
         }
     }

@@ -11,6 +11,8 @@ public class Tower : MonoBehaviour
     public float dir; //디렉션. 반시계방향:1.0 시계방향:-1.0
     public float length; // 빔 길이
     public string target;
+    public GameObject GM;
+    private GameManager worldGM;
 
     private float offset; // 한 번에 증가할 각도
     private float nowAngle; //현재 각도
@@ -22,6 +24,7 @@ public class Tower : MonoBehaviour
 
     void Awake()
     {
+        worldGM = GM.GetComponent<GameManager>();
         lineRenderer.positionCount = 2;
         lineRenderer.enabled = false;
         from = this.gameObject.transform.position; //빔 시작 좌표 = 타워 위치
@@ -67,6 +70,7 @@ public class Tower : MonoBehaviour
             Debug.DrawRay(from, to, Color.red, 2.0f,false);
             if(hit.collider != null)
             {
+                worldGM.GetDamage(5);
                 Debug.Log(hit.collider.name);
             }
             time += 0.1f;
