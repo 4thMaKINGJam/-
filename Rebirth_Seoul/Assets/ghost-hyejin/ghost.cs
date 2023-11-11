@@ -24,6 +24,8 @@ public class ghost : MonoBehaviour
             healthBar.Set_MaxHealth(maxHealth);
         }
         animator.SetBool("Right", true);
+
+
     }
 
     void Update()
@@ -32,8 +34,6 @@ public class ghost : MonoBehaviour
         {
             Move_To_Waypoint();
         }
-        //UpdateAnimation();
-
     }
 
     void Move_To_Waypoint()
@@ -52,7 +52,7 @@ public class ghost : MonoBehaviour
         {
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
 
-
+            /*
             if(currentWaypointIndex == 0)
             {
                 animator.SetBool("Right", true);
@@ -76,7 +76,7 @@ public class ghost : MonoBehaviour
                 animator.SetBool("Right", false);
                 animator.SetBool("Left", false);
                 animator.SetBool("Back", true);
-            }
+            }*/
 
 
         }
@@ -84,30 +84,25 @@ public class ghost : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-
         if (other.CompareTag("Bullet"))
         {
             Take_Damage(10);
+        }
+        else if (other.CompareTag("Player"))
+        {
+            Player_HpBar.curHp -= 10;
+            Debug.Log(Player_HpBar.curHp);
 
-            // 플레이어의 체력을 감소시키고 적을 제거
-            /*PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(damageAmount);
-                TakeDamage(damageAmount);
-            }*/
         }
     }
 
     void Take_Damage(int amount)
     {
-
         //Debug.Log("damage");
         // Ghost의 체력을 감소시키고, 체력이 0 이하로 떨어지면 Ghost를 제거
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-
             animator.SetBool("die", true);
             //Destroy(gameObject);
         }
