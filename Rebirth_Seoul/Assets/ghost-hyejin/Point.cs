@@ -26,14 +26,10 @@ public class Point : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         // 충돌한 오브젝트의 태그가 "Bullet"인지 확인
-        void OnTriggerEnter2D(Collider2D other)
+        if (other.CompareTag("Bullet"))
         {
-            // 충돌한 오브젝트의 태그가 "Bullet"인지 확인
-            if (other.CompareTag("Bullet"))
-            {
-                // 포인트의 HP 감소
-                pointHP -= damage;
-            }
+            // 포인트의 HP 감소
+            pointHP -= damage;
         }
     }
 

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1116034024012236182}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: waypoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1116034024065723997}
   - component: {fileID: 1116034024065723996}
   - component: {fileID: 1116034024065723999}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1116034024198317378}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 1116034024227448463}
   - component: {fileID: 1116034024227448457}
   - component: {fileID: 1116034024227448462}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   - component: {fileID: 1116034024416839107}
   - component: {fileID: 1116034024416839104}
   - component: {fileID: 1116034024416839105}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 1116034024824646131}
   - component: {fileID: 3830324090094908453}
   - component: {fileID: -1077104168643577001}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ghost2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,7 +635,7 @@ GameObject:
   - component: {fileID: 1116034025180410684}
   - component: {fileID: 1116034025180410686}
   - component: {fileID: 1116034025180410687}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -709,7 +709,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1116034025438802207}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: waypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

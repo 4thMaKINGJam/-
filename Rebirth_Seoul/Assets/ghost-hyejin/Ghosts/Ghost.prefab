@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3616416653426287451}
   - component: {fileID: 3616416653426287448}
   - component: {fileID: 3616416653426287449}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3616416653577634778}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 3616416653615153175}
   - component: {fileID: 3616416653615153169}
   - component: {fileID: 3616416653615153174}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 3616416653714491589}
   - component: {fileID: 3616416653714491588}
   - component: {fileID: 3616416653714491591}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3616416653835084558}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: waypoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +366,7 @@ GameObject:
   - component: {fileID: 3616416654096224104}
   - component: {fileID: 3616416654096224107}
   - component: {fileID: 7183969628181670205}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -463,6 +463,7 @@ MonoBehaviour:
   moveSpeed: 2
   maxHealth: 100
   currentHealth: 0
+  GM: {fileID: 0}
   currentWaypointIndex: 0
   deathSound: {fileID: 7183969628181670205}
 --- !u!61 &3616416654096224105
@@ -637,7 +638,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3616416654551750535}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: waypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,7 +671,7 @@ GameObject:
   - component: {fileID: 3616416654746637732}
   - component: {fileID: 3616416654746637734}
   - component: {fileID: 3616416654746637735}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,6 +11,7 @@ public class Tower : MonoBehaviour
     public float dir; //디렉션. 반시계방향:1.0 시계방향:-1.0
     public float length; // 빔 길이
     public string target;
+    public bool team = false;
     public GameObject GM;
     private GameManager worldGM;
 
@@ -66,12 +67,24 @@ public class Tower : MonoBehaviour
             nowAngle += moveAngle/(10.0f*beemTime);
             to = ConvertAngleToVector(startAngle + nowAngle) * length;
             lineRenderer.SetPosition(1, from + to);
-            RaycastHit2D hit = Physics2D.Raycast(from, to, length, LayerMask.GetMask("Player"));
-            Debug.DrawRay(from, to, Color.red, 2.0f,false);
-            if(hit.collider != null)
+            RaycastHit2D hit;
+            if (!team)
             {
-                worldGM.GetDamage(5);
-                Debug.Log(hit.collider.name);
+                hit = Physics2D.Raycast(from, to, length, LayerMask.GetMask("Player"));
+                if (hit.collider != null)
+                {
+                    worldGM.GetDamage(5);
+                    Debug.Log(hit.collider.name);
+                }
+            }
+            else{
+                hit = Physics2D.Raycast(from, to, length, LayerMask.GetMask("Ghost"));
+                if (hit.collider != null)
+                {
+                    Ghost_Parent ghostparent = hit.collider.gameObject.GetComponent<Ghost_Parent>();
+                    ghostparent.Take_Damage(10);
+                    Debug.Log(hit.collider.name);
+                }
             }
             time += 0.1f;
         }
