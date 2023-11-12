@@ -29,6 +29,9 @@ public class Player_Move : MonoBehaviour
     private Player_HpBar playerHpBar;
     AudioSource AtkSound;
 
+    public GameObject GM;
+    private GameManager worldGM;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +41,7 @@ public class Player_Move : MonoBehaviour
         // Player_HpBar ?´ë˜?¤ì˜ ?¸ìŠ¤?´ìŠ¤ë¥??»ìŒ
         playerHpBar = FindObjectOfType<Player_HpBar>();
         AtkSound = GetComponent<AudioSource>();
+        worldGM = GM.GetComponent<GameManager>();
     }
 
     //?œë²ˆ ë°©í–¥???„ë? ?Œë§ˆ????ì¹??€ì§ì´ê²??˜ê¸°
@@ -160,6 +164,7 @@ public class Player_Move : MonoBehaviour
     {
         if (other.CompareTag("Clear"))
         {
+            PlayerData.PlayerHP = worldGM.PlayerHP;
             SceneManager.LoadScene("End_Clear");
         }
     }
