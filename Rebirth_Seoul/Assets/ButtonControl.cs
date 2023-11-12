@@ -5,6 +5,6 @@ public class ButtonControl: MonoBehaviour
 {
     public void OnStartButtonClicked()
     {
-        SceneManager.LoadScene("Stage1");
+        SceneManager.LoadScene("MainScene");
     }
 }

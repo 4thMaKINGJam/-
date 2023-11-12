@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class Player_Move : MonoBehaviour
@@ -56,13 +57,21 @@ public class Player_Move : MonoBehaviour
             RaycastHit2D hit; //?œì‘ ì§€?ì—????ì§€?ê¹Œì§€ ?ˆì´?€ ???„ë‹¬?˜ë©´ null
             Vector2 start = transform.position; //?œì‘ ì§€?? ?„ì¬?„ì¹˜
             Vector2 end = start + new Vector2(vector.x * speed * walkCount, vector.y * speed * walkCount); //??ì§€?? ?´ë™?˜ê³ ???˜ëŠ” ê³?
-
+            
             hit = Physics2D.Linecast(start, end, LayerMask.GetMask("NoPassing"));
 
-            if(hit.transform != null)
+            if (hit.transform != null && hit.transform.CompareTag("Clear"))
+            {
+                SceneManager.LoadScene("End_Clear"); // ´ÙÀ½ ¾À ÀÌ¸§À¸·Î º¯°æ
+                yield break; // ¾À ÀüÈ¯ ÈÄ ÀÌµ¿ ÄÚ·çÆ¾ Á¾·á
+            }
+
+            if (hit.transform != null)
             {
                 break;
             }
+            
+
 
             animator.SetBool("Walking", true);
 
@@ -94,18 +103,29 @@ public class Player_Move : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {      
+    {
 
         if (curTime <= 0 && Input.GetKeyDown(KeyCode.Q))
         {
-            animator.SetTrigger("atk");
-            if (vector.x < 0)
+            if (vector.x != 0)
             {
-                transform.localScale = new Vector3(-1, 1, 1); //ÁÂ¿ì ¹İÀü
+                animator.SetTrigger("atk");
+                if (vector.x < 0)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
             }
-            else
+            else if(vector.y < 0)
             {
-                transform.localScale = new Vector3(1, 1, 1); //¿ø·¡´ë·Î
+                animator.SetTrigger("atk_down");
+            }
+            else if (vector.y > 0)
+            {
+                animator.SetTrigger("atk_up");
             }
             curTime = coolTime;
         }
@@ -134,6 +154,15 @@ public class Player_Move : MonoBehaviour
             }
         }
         
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Clear"))
+        {
+            SceneManager.LoadScene("End_Clear");
+        }
     }
 
 
