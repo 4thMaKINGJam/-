@@ -10,8 +10,6 @@ public class TowerHp : MonoBehaviour
 
     void Start()
     {
-        // 30초마다 SpawnPrefab 함수를 호출
-        InvokeRepeating("SpawnPrefab", 0f, 30f);
         tower = this.GetComponent<Tower>();
         towerHP = 100;
         damage = 10;
@@ -21,7 +19,7 @@ public class TowerHp : MonoBehaviour
     {
         if (towerHP <= 0)
         {
-            Destroy(gameObject);
+            tower.team = true;
         }
     }
 
