@@ -110,17 +110,13 @@ public class Player_Move : MonoBehaviour
         if (curTime <= 0 && Input.GetKeyDown(KeyCode.Q))
         {
             AtkSound.Play();
-            if (vector.x != 0)
+            if (vector.x > 0)
             {
                 animator.SetTrigger("atk");
-                if (vector.x < 0)
-                {
-                    transform.localScale = new Vector3(-1, 1, 1);
-                }
-                else
-                {
-                    transform.localScale = new Vector3(1, 1, 1);
-                }
+            }
+            else if (vector.x < 0)
+            {
+                animator.SetTrigger("atk_left");
             }
             else if(vector.y < 0)
             {
