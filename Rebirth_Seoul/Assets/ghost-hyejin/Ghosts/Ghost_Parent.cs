@@ -56,7 +56,7 @@ public class Ghost_Parent : MonoBehaviour
         }
         else if (other.CompareTag("Player"))
         {
-            worldGM.GetDamage(10);
+            worldGM.GetDamage(30);
             Debug.Log(worldGM.PlayerHP);
         }
     }
