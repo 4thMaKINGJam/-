@@ -5,12 +5,14 @@ public class Point : MonoBehaviour
     public GameObject prefabToSpawn; // 생성할 프리팹
     public Transform spawnPoint; // 생성 위치
     public int pointHP;
+    public int damage;
 
     void Start()
     {
         // 30초마다 SpawnPrefab 함수를 호출
         InvokeRepeating("SpawnPrefab", 0f, 30f);
         pointHP = 100;
+        damage = 10;
     }
 
     void Update()
@@ -20,6 +22,21 @@ public class Point : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        // 충돌한 오브젝트의 태그가 "Bullet"인지 확인
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            // 충돌한 오브젝트의 태그가 "Bullet"인지 확인
+            if (other.CompareTag("Bullet"))
+            {
+                // 포인트의 HP 감소
+                pointHP -= damage;
+            }
+        }
+    }
+
 
     void SpawnPrefab()
     {
