@@ -12,6 +12,8 @@ public class Ghost2 : MonoBehaviour
     private ghostHealthBar healthBar;
     private Animator animator;
 
+    public AudioSource deathSound;
+
     void Start()
     {
         currentHealth = maxHealth; // 최대 체력으로 시작
@@ -103,7 +105,7 @@ public class Ghost2 : MonoBehaviour
         if (currentHealth <= 0)
         {
             animator.SetBool("die", true);
-            //Destroy(gameObject);
+            deathSound.Play();
         }
 
         healthBar.Set_Health(currentHealth);
