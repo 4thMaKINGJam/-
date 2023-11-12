@@ -15,7 +15,6 @@ public class Tower : MonoBehaviour
     public GameObject GM;
     private GameManager worldGM;
 
-    private float offset; // 한 번에 증가할 각도
     private float nowAngle; //현재 각도
     private float time; //현재 시간
     private Vector3 from; // 빔 시작 위치
