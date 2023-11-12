@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Point2 : MonoBehaviour
 {
@@ -7,12 +8,22 @@ public class Point2 : MonoBehaviour
     public int pointHP;
     public int damage;
 
+    public Slider healthSlider; // 체력 바
+    public int maxPointHP = 100;
+
     void Start()
     {
         // 30초마다 SpawnPrefab 함수를 호출
         InvokeRepeating("SpawnPrefab", 0f, 30f);
-        pointHP = 100;
+        pointHP = maxPointHP; // 최대 체력으로 초기화
         damage = 10;
+
+        // 체력 바 초기화
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = maxPointHP;
+            healthSlider.value = pointHP;
+        }
     }
 
     void Update()
@@ -30,6 +41,9 @@ public class Point2 : MonoBehaviour
         {
             // 포인트의 HP 감소
             pointHP -= damage;
+
+            // 체력 바 업데이트
+            UpdateHealthBar();
         }
     }
 
@@ -53,6 +67,15 @@ public class Point2 : MonoBehaviour
         else
         {
             Debug.LogError("Ghost 스크립트를 찾을 수 없습니다.");
+        }
+    }
+
+    void UpdateHealthBar()
+    {
+        // 체력 바 업데이트
+        if (healthSlider != null)
+        {
+            healthSlider.value = pointHP;
         }
     }
 }
