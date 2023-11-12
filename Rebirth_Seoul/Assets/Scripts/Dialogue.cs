@@ -21,7 +21,7 @@ public class Dialogue : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)) //스페이스 입력시
         {
             NextDialogue();
         }
