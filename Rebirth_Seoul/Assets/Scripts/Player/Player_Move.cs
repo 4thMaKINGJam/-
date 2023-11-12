@@ -27,8 +27,7 @@ public class Player_Move : MonoBehaviour
     public float coolTime = 0.5f;
 
     private Player_HpBar playerHpBar;
-
-
+    AudioSource AtkSound;
 
 
     // Start is called before the first frame update
@@ -38,6 +37,7 @@ public class Player_Move : MonoBehaviour
         animator = GetComponent<Animator>();
         // Player_HpBar ?¥Îûò?§Ïùò ?∏Ïä§?¥Ïä§Î•??ªÏùå
         playerHpBar = FindObjectOfType<Player_HpBar>();
+        AtkSound = GetComponent<AudioSource>();
     }
 
     //?úÎ≤à Î∞©Ìñ•???ÑÎ? ?åÎßà????Ïπ??ÄÏßÅÏù¥Í≤??òÍ∏∞
@@ -80,10 +80,12 @@ public class Player_Move : MonoBehaviour
             {
                 if (vector.x != 0)
                 {
+                    transform.localScale = new Vector3(1, 1, 1);
                     transform.Translate(vector.x * speed, 0, 0);
                 }
                 else if (vector.y != 0)
                 {
+                    transform.localScale = new Vector3(1, 1, 1);
                     transform.Translate(0, vector.y * speed, 0);
                 }
 
@@ -107,6 +109,7 @@ public class Player_Move : MonoBehaviour
 
         if (curTime <= 0 && Input.GetKeyDown(KeyCode.Q))
         {
+            AtkSound.Play();
             if (vector.x != 0)
             {
                 animator.SetTrigger("atk");
