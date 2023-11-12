@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Player_HpBar : MonoBehaviour
 {
@@ -34,11 +35,17 @@ public class Player_HpBar : MonoBehaviour
         if (worldGM.PlayerHP <= 0)
         {
             HpZero = true;
+            Invoke("LoadGameOverScene", 1.5f);
         }
     }
 
     private void HandleHp()
     {
         hpbar.value = (float)worldGM.PlayerHP / (float)maxHp;
+    }
+
+    void LoadGameOverScene()
+    {
+        SceneManager.LoadScene("End_GameOver");
     }
 }
