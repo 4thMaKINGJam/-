@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/End_Clear.unity
     guid: 43e3862fd73973b4090a3117da877074
+  - enabled: 1
+    path: Assets/Scenes/NpcTalk.unity
+    guid: e7d88b2b487c18941a310486a8305950
   m_configObjects: {}
